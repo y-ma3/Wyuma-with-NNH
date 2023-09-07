@@ -9,7 +9,8 @@ function App() {
         <img src={humanPng} alt="picture" />
         <p className="user-name">TEST USER01</p>
       </div>
-      <p class="account-number">口座番号：10000000</p>
+      <p className="account-number">口座番号:10000000</p>
+      <p className="account-balance">預金残高:1000000</p>
     </div>
   );
 }
