@@ -1,17 +1,20 @@
 import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import humanPng from './images/human1.png';
+// import Home from "./pages/Home";
+import Test from "./pages/Test";
+import TestSend from "./pages/TestSend";
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <div class="flex">
-        <img src={humanPng} alt="picture" />
-        <p className="user-name">TEST USER01</p>
-      </div>
-      <p className="account-number">口座番号:10000000</p>
-      <p className="account-balance">預金残高:1000000</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={`/`} element={<Test />} index={true} /> {}
+        <Route path="/testsend" element={<TestSend />} index={true} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
