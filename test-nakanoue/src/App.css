@@ -40,3 +40,9 @@
 .account-number {
   font-size: 40px;
 }
+
+.flex{
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
