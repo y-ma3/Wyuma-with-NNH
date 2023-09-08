@@ -1,6 +1,7 @@
 /* アカウント(ユーザ)画面 */
 
-import React from 'react';
+// import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import humanPng from '../images/human1.png';
 import axios from 'axios';
