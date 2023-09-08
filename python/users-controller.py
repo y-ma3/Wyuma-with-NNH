@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 app = Flask(__name__)
 
 import mysql.connector
@@ -42,7 +43,6 @@ def selectUser():
     
     uc.cursor.execute(sql)
     userInfo = uc.cursor.fetchone()
-    j = json.dumps(userInfo)
     if userInfo:
         (number, icon, balance, name) = userInfo
         data = {"icon" : icon, "balance" : balance, "name" : name}
@@ -50,9 +50,25 @@ def selectUser():
     return j
     return app.json(j)
 
+# @app.route('/bank/users')
+# def selectAllUser():
+    
+#     sql = 'select * from users'
+    
+#     uc.cursor.execute(sql)
+#     userInfo = uc.cursor.fetchall()
+#     print(userInfo)
+#     if userInfo:
+#         (number, icon, balance, name) = userInfo
+#         data = {"icon" : icon, "balance" : balance, "name" : name}
+#     j = json.dumps(data, ensure_ascii=False)
+#     return j
+#     return app.json(j)
+
+
 
 
 if __name__ == "__main__":
-    
+    CORS(app)
     app.run(debug=True)
     
