@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import humanPng from './images/human1.png';
-import AccountOverview from "./pages/AccountOverview";
 // import Test from "./pages/Test";
 import RecipientSelect from "./pages/RecipientSelect";
 import MoneyTransfer from "./pages/MoneyTransfer";
+import AccountOverview from "./pages/AccountOverview";
 import TransferSuccess from "./pages/TransferSuccess";
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import './App.css';
 
 
@@ -16,10 +16,13 @@ function App() {
   const [post, setPosts] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3000')
-    .then(res => {
-        setPosts(res.data)
-    })
+    axios.post('http://localhost:5000/bank/user?accountNumber=10000000')
+      .then(response => {
+        console.log('データがサーバーに送信されました:', response.data);
+      })
+      .catch(error => {
+        console.error('データの送信に失敗しました:', error);
+      });
   }, [])
 
   const userName = post.userName;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams,useLocation } from 'react-router-dom';
 
 function MoneyTransfer() {
     const navigate = useNavigate();
     const { userName } = useParams();
     const [transferAmount, setTransferAmount] = useState('');
-    const balance = 10000000;
+    const location = useLocation();
+    const { balance } = location.state || {};
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = () => {
@@ -39,7 +40,7 @@ function MoneyTransfer() {
 
     return (
         <div className="App">
-            <p style={paragraphStyle}>Money Transfer</p>
+            {/* <p style={paragraphStyle}>Money Transfer</p> */}
             <div className="recipient-info">
                 <p style={paragraphStyle}>送金先</p>
                 <p style={paragraphStyle}>{userName}</p>
