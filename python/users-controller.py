@@ -1,19 +1,13 @@
 from flask import Flask
-from flask import request, make_response, jsonify
-from flask_cors import CORS
+app = Flask(__name__)
 
 import mysql.connector
 import json
+from flask import request
 
 class userController:
     
     def __init__(self):
-
-        app = Flask(__name__, static_folder="./build/static", template_folder="./build")
-        CORS(app)
-
-        app.debug = True
-        app.run(host='127.0.0.1', port=5000)
 
         try:
             self.cnx = mysql.connector.connect(
@@ -29,16 +23,27 @@ class userController:
             self.cnx.is_connected()
             self.cursor = self.cnx.cursor()
 
+            print("成功")
+
         except Exception as e:
             print(f"Error Occurred: {e}")
 
-    @app.route('bank/user')
-    def selectUser(self, number):
-        sql = 'select * from user where number = {}'.format(number)
+    @app.route('/bank/user')
+    def selectUser():
+        query = ""
+        if request.args.get('accountNumber') is not None:
+            query = request.args.get('accountNumber')
+        else:
+            query = "パラメーターがないよ"
+        sql = 'select * from user where number = {}'.format(query)
         self.cursor.execute(sql)
         for (number,icon,balance,name) in cursor:
             data = '{"icon" : {}, "balance" : {}, "name" : {}}'.format(icon,balance,name)
         j = json.loads(data)
+        return j
         return app.json(j)
 
 
+if __name__ == "__main__":
+
+    app.run(debug=True)
