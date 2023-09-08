@@ -14,6 +14,9 @@ import './App.css';
 function App() {
 
   const [post, setPosts] = useState([])
+  const [data, setData] = useState({
+    accountNumber: 10000000,
+  });
 
   useEffect(() => {
     axios.post('http://localhost:5000/bank/user?accountNumber=10000000')
@@ -25,8 +28,9 @@ function App() {
       });
   }, [])
 
-  const userName = post.userName;
-  const accountBalance = post.accountBalance;
+  // const imageURL = post.imageURL
+  // const userName = post.userName;
+  // const accountBalance = post.accountBalance;
 
   return (
     <BrowserRouter>
