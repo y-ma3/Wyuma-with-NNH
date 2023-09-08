@@ -14,16 +14,23 @@ import axios from 'axios';
 function App() {
 
   const [post, setPosts] = useState([])
+  const [data, setData] = useState({
+    accountNumber: 10000000,
+  });
 
   useEffect(() => {
-    axios.get('http://localhost:3000')
-    .then(res => {
-        setPosts(res.data)
-    })
+    axios.post('http://localhost:5000/bank/user?accountNumber=10000000')
+      .then(response => {
+        console.log('データがサーバーに送信されました:', response.data);
+      })
+      .catch(error => {
+        console.error('データの送信に失敗しました:', error);
+      });
   }, [])
 
-  const userName = post.userName;
-  const accountBalance = post.accountBalance;
+  // const imageURL = post.imageURL
+  // const userName = post.userName;
+  // const accountBalance = post.accountBalance;
 
   return (
     <BrowserRouter>
