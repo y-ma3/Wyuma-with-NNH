@@ -1,9 +1,20 @@
+from flask import Flask
+from flask import request, make_response, jsonify
+from flask_cors import CORS
+
 import mysql.connector
 import json
 
 class userController:
     
     def __init__(self):
+
+        app = Flask(__name__, static_folder="./build/static", template_folder="./build")
+        CORS(app)
+
+        app.debug = True
+        app.run(host='127.0.0.1', port=5000)
+
         try:
             self.cnx = mysql.connector.connect(
                 user='root',  # ユーザー名
