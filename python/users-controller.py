@@ -28,22 +28,31 @@ class userController:
         except Exception as e:
             print(f"Error Occurred: {e}")
 
-    @app.route('/bank/user')
-    def selectUser():
-        query = ""
-        if request.args.get('accountNumber') is not None:
-            query = request.args.get('accountNumber')
-        else:
-            query = "パラメーターがないよ"
-        sql = 'select * from user where number = {}'.format(query)
-        self.cursor.execute(sql)
-        for (number,icon,balance,name) in cursor:
-            data = '{"icon" : {}, "balance" : {}, "name" : {}}'.format(icon,balance,name)
-        j = json.loads(data)
-        return j
-        return app.json(j)
+uc = userController()
+
+@app.route('/bank/user')
+def selectUser():
+    query = ""
+    if request.args.get('accountNumber') is not None:
+        query = request.args.get('accountNumber')
+    else:
+        query = "パラメーターがないよ"
+    
+    sql = 'select * from users where number = {}'.format(query)
+    
+    uc.cursor.execute(sql)
+    userInfo = uc.cursor.fetchone()
+    j = json.dumps(userInfo)
+    if userInfo:
+        (number, icon, balance, name) = userInfo
+        data = {"icon" : icon, "balance" : balance, "name" : name}
+    j = json.dumps(data, ensure_ascii=False)
+    return j
+    return app.json(j)
+
 
 
 if __name__ == "__main__":
-
+    
     app.run(debug=True)
+    
