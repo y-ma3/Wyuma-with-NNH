@@ -1,5 +1,5 @@
 /* 送金相手選択画面 */
-
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import '../App.css';
@@ -9,15 +9,15 @@ import humanPng4 from '../images/human4.png';
 
 function SendTest() {
     const navigate = useNavigate();
+    // const [selectedUserName, setSelectedUserName] = useState(null);
     const users = [
         { id: 1, name: "TEST USER02", image: humanPng2 },
         { id: 2, name: "TEST USER03", image: humanPng3 },
         { id: 3, name: "TEST USER04", image: humanPng4 },
     ];
 
-    const handleUserClick = (userId) => {
-        alert(`Clicked USER ${userId} `);
-        navigate('/MoneyTransfer');
+    const handleUserClick = (userId, userName) => {
+        navigate(`/MoneyTransfer/${encodeURIComponent(userName)}`);
     };
 
     return (
@@ -30,7 +30,8 @@ function SendTest() {
                     <div
                         className="user-item"
                         key={user.id}
-                        onClick={() => handleUserClick(user.id)}
+                        // onClick={() => handleUserClick(user.id)}
+                        onClick={() => handleUserClick(user.id, user.name)}
                     >
                         <img src={user.image} alt="picture" />
                         <p className="user-name">{user.name}</p>

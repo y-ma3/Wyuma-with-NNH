@@ -7,6 +7,7 @@ import AccountOverview from "./pages/AccountOverview";
 // import Test from "./pages/Test";
 import RecipientSelect from "./pages/RecipientSelect";
 import MoneyTransfer from "./pages/MoneyTransfer";
+import TransferSuccess from "./pages/TransferSuccess";
 import './App.css';
 
 
@@ -29,7 +30,9 @@ function App() {
       <Routes>
         <Route path={`/`} element={<AccountOverview />} index={true} /> {}
         <Route path="/RecipientSelect" element={<RecipientSelect />} index={true} />
-        <Route path="/MoneyTransfer" element={<MoneyTransfer />} />
+        {/* <Route path="/MoneyTransfer" element={<MoneyTransfer />} /> */}
+        <Route path="/MoneyTransfer/:userName" element={<MoneyTransfer />} />
+        <Route path="/TransferSuccess" element={<TransferSuccess />} />
       </Routes>
     </BrowserRouter>
 //     <div className="App">
