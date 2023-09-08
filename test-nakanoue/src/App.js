@@ -1,15 +1,15 @@
 import logo from './logo.svg';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import humanPng from './images/human1.png';
-import AccountOverview from "./pages/AccountOverview";
 // import Test from "./pages/Test";
 import RecipientSelect from "./pages/RecipientSelect";
 import MoneyTransfer from "./pages/MoneyTransfer";
-
-
-import './App.css';
+import AccountOverview from "./pages/AccountOverview";
+import TransferSuccess from "./pages/TransferSuccess";
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import './App.css';
+
 
 function App() {
 
@@ -37,7 +37,9 @@ function App() {
       <Routes>
         <Route path={`/`} element={<AccountOverview />} index={true} /> {}
         <Route path="/RecipientSelect" element={<RecipientSelect />} index={true} />
-        <Route path="/MoneyTransfer" element={<MoneyTransfer />} />
+        {/* <Route path="/MoneyTransfer" element={<MoneyTransfer />} /> */}
+        <Route path="/MoneyTransfer/:userName" element={<MoneyTransfer />} />
+        <Route path="/TransferSuccess" element={<TransferSuccess />} />
       </Routes>
     </BrowserRouter>
 //     <div className="App">
