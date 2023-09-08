@@ -56,7 +56,7 @@ function MoneyTransfer() {
                     max={balance}
                 />
             </div>
-            {errorMessage && <p style={{ color: 'red', fontSize: '18px' }}>{errorMessage}</p>}
+            {errorMessage && <p style={{ color: 'red', fontSize: '15px', 'font-weight': 'bold'}}>{errorMessage}</p>}
             <button style={paragraphStyle} onClick={handleSubmit} disabled={isButtonDisabled}>送金</button>
         </div>
     );
